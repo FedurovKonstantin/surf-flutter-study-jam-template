@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:surf_practice_chat_flutter/domain/chat_manager.dart';
+import 'package:surf_practice_chat_flutter/domain/providers.dart';
 import 'package:surf_practice_chat_flutter/utils/Strings.dart';
 
-class MessageInput extends StatelessWidget {
+class MessageInput extends HookConsumerWidget {
   const MessageInput({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final chatManager = ref.watch(chatManagerProvider);
+
+    final TextEditingController messageController;
+
+    messageController = useTextEditingController();
+
     return Padding(
       padding: const EdgeInsets.only(
         left: 8,
@@ -17,15 +27,16 @@ class MessageInput extends StatelessWidget {
           const Divider(),
           Row(
             children: [
-              const Expanded(
+              Expanded(
                 child: TextField(
-                  decoration: InputDecoration(
+                  controller: messageController,
+                  decoration: const InputDecoration(
                     hintText: Strings.messageHint,
                   ),
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () => chatManager.sendMessage(messageController.text),
                 icon: const Icon(
                   Icons.send,
                 ),

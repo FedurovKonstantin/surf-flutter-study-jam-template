@@ -2,7 +2,8 @@ import 'package:riverpod/riverpod.dart';
 
 import '../data/chat/models/message.dart';
 
-final chatStateHolderProvider = StateNotifierProvider(
+final chatStateHolderProvider =
+    StateNotifierProvider<ChatStateHolder, List<ChatMessageDto>>(
   ((ref) => ChatStateHolder()),
 );
 

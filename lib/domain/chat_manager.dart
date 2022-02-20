@@ -13,6 +13,13 @@ class ChatManager {
     this._chatState,
   );
 
+  Future<void> init() async {
+    try {
+      final messages = await _chatRepository.messages;
+      _chatState.updateMessages(messages);
+    } catch (e) {}
+  }
+
   Future<void> sendMessage(String message) async {
     try {
       final nickname = _userState.nickname;
