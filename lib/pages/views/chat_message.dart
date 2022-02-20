@@ -19,14 +19,14 @@ class ChatMessage extends StatelessWidget {
     return Row(
       textDirection: isMy ? TextDirection.rtl : TextDirection.ltr,
       children: [
-        _Avatar(
+        Avatar(
           author: author,
         ),
         const SizedBox(
           width: 15,
         ),
         Expanded(
-          child: _Body(
+          child: MessageBody(
             isMy: isMy,
             author: author,
             message: message,
@@ -37,8 +37,8 @@ class ChatMessage extends StatelessWidget {
   }
 }
 
-class _Body extends StatelessWidget {
-  const _Body({
+class MessageBody extends StatelessWidget {
+  const MessageBody({
     Key? key,
     required this.isMy,
     required this.author,
@@ -73,8 +73,8 @@ class _Body extends StatelessWidget {
   }
 }
 
-class _Avatar extends StatelessWidget {
-  const _Avatar({
+class Avatar extends StatelessWidget {
+  const Avatar({
     Key? key,
     required this.author,
   }) : super(key: key);

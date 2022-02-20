@@ -12,7 +12,16 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>surf_practice_chat_flutter</string>
-	
+	<key>LSApplicationQueriesSchemes</key>
+<array>
+  <string>https</string>
+  <string>http</string>
+</array>
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>googlechromes</string>
+    <string>comgooglemaps</string>
+</array>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
