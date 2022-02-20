@@ -28,6 +28,7 @@ class _ChatScreenState extends State<ChatScreen> {
         children: [
           Expanded(
             child: ListView(
+              reverse: true,
               children: [
                 ChatMessage(
                   author: "Artur",
