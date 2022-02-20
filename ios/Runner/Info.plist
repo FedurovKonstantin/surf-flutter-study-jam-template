@@ -12,8 +12,15 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>surf_practice_chat_flutter</string>
+	
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Dai dostup</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Dai postoyniy dostup</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Dai echo dostup</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>

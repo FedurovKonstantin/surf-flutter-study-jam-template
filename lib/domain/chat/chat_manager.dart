@@ -1,4 +1,6 @@
+import 'package:location/location.dart';
 import 'package:surf_practice_chat_flutter/data/chat/chat.dart';
+import 'package:surf_practice_chat_flutter/domain/location/location_manager.dart';
 import 'package:surf_practice_chat_flutter/domain/ui/ui_exception_manager.dart';
 import 'package:surf_practice_chat_flutter/pages/page_domain/chat_page_state_holder.dart';
 import 'package:surf_practice_chat_flutter/utils/strings.dart';
@@ -12,6 +14,7 @@ class ChatManager {
   final ChatStateHolder _chatState;
   final UIExceptionManager _uiExceptionManager;
   final ChatPageStateHolder _chatPageState;
+  final LocationManager _locationManager;
 
   ChatManager(
     this._chatRepository,
@@ -19,6 +22,7 @@ class ChatManager {
     this._chatState,
     this._uiExceptionManager,
     this._chatPageState,
+    this._locationManager,
   );
 
   Future<void> init() async {
@@ -37,13 +41,32 @@ class ChatManager {
     }
   }
 
-  Future<void> sendMessage(String message) async {
+  Future<void> sendMessage(
+    String message, {
+    bool withLocation = false,
+  }) async {
     _chatPageState.load();
+    LocationData? location;
+    if (withLocation) {
+      location = await _locationManager.getLocation();
+    }
 
     try {
       final nickname = _userState.nickname;
+      final messages;
 
-      final messages = await _chatRepository.sendMessage(nickname, message);
+      if (location != null) {
+        messages = await _chatRepository.sendGeolocationMessage(
+          nickname: nickname,
+          location: ChatGeolocationDto(
+            latitude: location.latitude ?? 0,
+            longitude: location.longitude ?? 0,
+          ),
+        );
+      } else {
+        messages = await _chatRepository.sendMessage(nickname, message);
+      }
+
       _chatState.updateMessages(messages);
     } on InvalidNameException catch (_) {
       _uiExceptionManager.showSnackbar(Strings.invalidNameExceptionMessage);
@@ -54,4 +77,6 @@ class ChatManager {
     }
     _chatPageState.done();
   }
+
+  Future<void> sendWithLocation() async {}
 }

@@ -19,37 +19,71 @@ class MessageInput extends HookConsumerWidget {
 
     messageController = useTextEditingController();
 
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 10,
-        right: 10,
-        bottom: 10,
-      ),
-      child: Column(
-        children: [
-          const Divider(),
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  controller: messageController,
-                  decoration: const InputDecoration(
-                    hintText: Strings.messageHint,
+    //Чтобы не перекрыло снизу на айфонах
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.only(
+          left: 10,
+          right: 10,
+          bottom: 10,
+        ),
+        child: Column(
+          children: [
+            const Divider(),
+            Row(
+              children: [
+                _SendWithLocationButton(
+                  chatManager: chatManager,
+                  messageController: messageController,
+                ),
+                Expanded(
+                  child: TextField(
+                    controller: messageController,
+                    decoration: const InputDecoration(
+                      hintText: Strings.messageHint,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              _SendButton(
-                chatPageState: chatPageState,
-                chatManager: chatManager,
-                messageController: messageController,
-              ),
-            ],
-          ),
-        ],
+                const SizedBox(
+                  width: 5,
+                ),
+                _SendButton(
+                  chatPageState: chatPageState,
+                  chatManager: chatManager,
+                  messageController: messageController,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
+    );
+  }
+}
+
+class _SendWithLocationButton extends StatelessWidget {
+  const _SendWithLocationButton({
+    Key? key,
+    required this.chatManager,
+    required this.messageController,
+  }) : super(key: key);
+
+  final ChatManager chatManager;
+  final TextEditingController messageController;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(
+        Icons.location_on,
+        color: Theme.of(context).primaryColor,
+      ),
+      onPressed: () {
+        chatManager.sendMessage(
+          messageController.text,
+          withLocation: true,
+        );
+      },
     );
   }
 }
