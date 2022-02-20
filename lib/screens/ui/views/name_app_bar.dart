@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/Strings.dart';
+import '../../../utils/Strings.dart';
 
 class NameAppBar extends StatelessWidget implements PreferredSizeWidget {
   const NameAppBar({Key? key}) : super(key: key);

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:surf_practice_chat_flutter/data/chat/repository/repository.dart';
-import 'package:surf_practice_chat_flutter/screens/views/message_input.dart';
-import 'package:surf_practice_chat_flutter/screens/views/name_app_bar.dart';
+import 'package:surf_practice_chat_flutter/screens/ui/views/chat_message.dart';
 import 'package:surf_practice_chat_flutter/utils/Strings.dart';
+
+import 'views/message_input.dart';
+import 'views/name_app_bar.dart';
 
 class ChatScreen extends StatefulWidget {
   final ChatRepository chatRepository;
@@ -25,7 +27,20 @@ class _ChatScreenState extends State<ChatScreen> {
       body: Column(
         children: [
           Expanded(
-            child: Container(),
+            child: ListView(
+              children: [
+                ChatMessage(
+                  author: "Artur",
+                  message: "Hi dear",
+                  isMy: true,
+                ),
+                ChatMessage(
+                  author: "Artur",
+                  message: "Hi dear",
+                  isMy: false,
+                ),
+              ],
+            ),
           ),
           const MessageInput(),
         ],
