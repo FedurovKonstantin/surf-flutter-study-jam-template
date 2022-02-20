@@ -1,6 +1,7 @@
 import 'package:surf_practice_chat_flutter/data/chat/chat.dart';
-import 'package:surf_practice_chat_flutter/domain/chat_state_holder.dart';
-import 'package:surf_practice_chat_flutter/user/domain/user_state_holder.dart';
+
+import '../user/user_state_holder.dart';
+import 'chat_state_holder.dart';
 
 class ChatManager {
   final ChatRepository _chatRepository;

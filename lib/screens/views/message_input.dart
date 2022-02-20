@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:surf_practice_chat_flutter/domain/chat_manager.dart';
-import 'package:surf_practice_chat_flutter/domain/providers.dart';
+import 'package:surf_practice_chat_flutter/domain/chat/providers.dart';
 import 'package:surf_practice_chat_flutter/utils/Strings.dart';
 
 class MessageInput extends HookConsumerWidget {

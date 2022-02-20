@@ -1,11 +1,6 @@
 import 'package:riverpod/riverpod.dart';
 
-import '../data/chat/models/message.dart';
-
-final chatStateHolderProvider =
-    StateNotifierProvider<ChatStateHolder, List<ChatMessageDto>>(
-  ((ref) => ChatStateHolder()),
-);
+import '../../data/chat/models/message.dart';
 
 class ChatStateHolder extends StateNotifier<List<ChatMessageDto>> {
   ChatStateHolder([List<ChatMessageDto>? state]) : super(state ?? []);

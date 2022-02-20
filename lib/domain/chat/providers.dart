@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:surf_practice_chat_flutter/data/chat/chat.dart';
 import 'package:surf_practice_chat_flutter/data/chat/repository/firebase.dart';
-import 'package:surf_practice_chat_flutter/domain/chat_manager.dart';
-import 'package:surf_practice_chat_flutter/domain/chat_state_holder.dart';
-import 'package:surf_practice_chat_flutter/user/providers.dart';
+import '../user/providers.dart';
+import 'chat_manager.dart';
+import 'chat_state_holder.dart';
 
 final chatManagerProvider = Provider(
   (ref) => ChatManager(
@@ -22,4 +22,9 @@ final chatRepositoryProvider = Provider<ChatRepository>(
 
 final firebaseClientProvider = Provider(
   (ref) => FirebaseFirestore.instance,
+);
+
+final chatStateHolderProvider =
+    StateNotifierProvider<ChatStateHolder, List<ChatMessageDto>>(
+  ((ref) => ChatStateHolder()),
 );

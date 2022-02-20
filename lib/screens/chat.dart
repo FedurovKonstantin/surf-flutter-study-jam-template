@@ -3,14 +3,12 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:surf_practice_chat_flutter/data/chat/repository/repository.dart';
-import 'package:surf_practice_chat_flutter/domain/chat_state_holder.dart';
-import 'package:surf_practice_chat_flutter/domain/providers.dart';
-import 'package:surf_practice_chat_flutter/screens/ui/views/chat_message.dart';
-import 'package:surf_practice_chat_flutter/user/providers.dart';
-import 'package:surf_practice_chat_flutter/utils/Strings.dart';
+import 'package:surf_practice_chat_flutter/domain/chat/providers.dart';
+import 'package:surf_practice_chat_flutter/screens/views/message_input.dart';
+import 'package:surf_practice_chat_flutter/screens/views/name_app_bar.dart';
 
-import 'views/message_input.dart';
-import 'views/name_app_bar.dart';
+import '../domain/user/providers.dart';
+import 'views/chat_message.dart';
 
 class ChatScreen extends StatefulWidget {
   final ChatRepository chatRepository;
@@ -61,7 +59,7 @@ class Messages extends HookConsumerWidget {
             (message) => ChatMessage(
               author: message.author.name,
               message: message.message,
-              isMy: userState.name == message.author.name,
+              isMy: userState?.name == message.author.name,
             ),
           )
           .toList(),
