@@ -46,17 +46,22 @@ class _MessagesView extends ConsumerWidget {
     final userState = ref.watch(userStateHolderProvider);
     final chatState = ref.watch(chatStateHolderProvider);
 
-    return ListView(
+    return ListView.separated(
+      itemCount: chatState.length,
+      itemBuilder: (context, index) {
+        return ChatMessage(
+          author: chatState[index].author.name,
+          message: chatState[index].message,
+          isMy: userState.name == chatState[index].author.name,
+        );
+      },
+      padding: const EdgeInsets.symmetric(
+        horizontal: 15,
+      ),
+      separatorBuilder: (context, index) => const SizedBox(
+        height: 10,
+      ),
       reverse: true,
-      children: chatState
-          .map(
-            (message) => ChatMessage(
-              author: message.author.name,
-              message: message.message,
-              isMy: userState.name == message.author.name,
-            ),
-          )
-          .toList(),
     );
   }
 }

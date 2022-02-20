@@ -38,15 +38,18 @@ class ChatManager {
   }
 
   Future<void> sendMessage(String message) async {
+    _chatPageState.load();
+
     try {
       final nickname = _userState.nickname;
 
       final messages = await _chatRepository.sendMessage(nickname, message);
       _chatState.updateMessages(messages);
+      _chatPageState.done();
     } on InvalidNameException catch (_) {
       _uiExceptionManager.showSnackbar(Strings.invalidNameExceptionMessage);
     } on InvalidMessageException catch (_) {
-      _uiExceptionManager.showSnackbar(Strings.invalidNameExceptionMessage);
+      _uiExceptionManager.showSnackbar(Strings.invalidMessageExceptionMessage);
     } on Exception catch (e) {
       _uiExceptionManager.showSnackbar(e.toString());
     }

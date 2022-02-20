@@ -16,49 +16,86 @@ class ChatMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 15,
+    return Row(
+      textDirection: isMy ? TextDirection.rtl : TextDirection.ltr,
+      children: [
+        _Avatar(
+          author: author,
+        ),
+        const SizedBox(
+          width: 15,
+        ),
+        Expanded(
+          child: _Body(
+            author: author,
+            message: message,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  const _Body({
+    Key? key,
+    required this.author,
+    required this.message,
+  }) : super(key: key);
+
+  final String author;
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          author,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+          softWrap: true,
+        ),
+        const SizedBox(
+          height: 4,
+        ),
+        Text(
+          message,
+        ),
+      ],
+    );
+  }
+}
+
+class _Avatar extends StatelessWidget {
+  const _Avatar({
+    Key? key,
+    required this.author,
+  }) : super(key: key);
+
+  final String author;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 65,
+      width: 65,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Theme.of(context).primaryColor,
+        shape: BoxShape.circle,
       ),
-      child: Row(
-        textDirection: isMy ? TextDirection.rtl : TextDirection.ltr,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              shape: BoxShape.circle,
-            ),
-            child: Text(
-              author[0],
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 40,
-              ),
-            ),
+      child: Center(
+        child: Text(
+          author[0].toUpperCase(),
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 40,
           ),
-          const SizedBox(
-            width: 15,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                author,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(
-                height: 4,
-              ),
-              Text(
-                message,
-              ),
-            ],
-          ),
-        ],
+        ),
       ),
     );
   }

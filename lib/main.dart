@@ -41,7 +41,7 @@ class MyApp extends ConsumerWidget {
         colorSchemeSeed: Colors.deepPurple,
         useMaterial3: true,
       ),
-      home: const ChatScreen(),
+      home: const ChatPage(),
     );
   }
 }

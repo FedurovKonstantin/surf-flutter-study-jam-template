@@ -22,6 +22,7 @@ class NameAppBar extends ConsumerWidget implements PreferredSizeWidget {
               style: const TextStyle(
                 color: Colors.white,
               ),
+              cursorColor: Colors.white,
               decoration: const InputDecoration(
                 hintText: Strings.nameHint,
                 hintStyle: TextStyle(
