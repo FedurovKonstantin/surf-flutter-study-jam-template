@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:surf_practice_chat_flutter/domain/location/location_manager.dart';
+import 'package:surf_practice_chat_flutter/domain/location/providers.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../data/chat/models/geolocation.dart';
 import 'chat_message.dart';
@@ -35,6 +39,7 @@ class ChatMessageLocation extends StatelessWidget {
             isMy: isMy,
             author: author,
             message: message,
+            location: location,
           ),
         ),
       ],
@@ -42,20 +47,23 @@ class ChatMessageLocation extends StatelessWidget {
   }
 }
 
-class LocationMessageBody extends StatelessWidget {
+class LocationMessageBody extends ConsumerWidget {
   const LocationMessageBody({
     Key? key,
     required this.isMy,
     required this.author,
+    required this.location,
     this.message,
   }) : super(key: key);
 
   final String author;
   final String? message;
   final bool isMy;
+  final ChatGeolocationDto location;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final locationManager = ref.watch(locationManagerProvider);
     return Column(
       crossAxisAlignment: isMy ? CrossAxisAlignment.end : CrossAxisAlignment.start,
       children: [
@@ -72,7 +80,9 @@ class LocationMessageBody extends StatelessWidget {
           ),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            locationManager.openMap(location);
+          },
           child: const Text('Открыть в картах'),
         ),
         if (message != null)

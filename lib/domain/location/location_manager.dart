@@ -1,6 +1,12 @@
 import 'package:location/location.dart';
+import 'package:surf_practice_chat_flutter/data/chat/chat.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LocationManager {
+  void openMap(ChatGeolocationDto location) {
+    launch('geo:${location.latitude},${location.longitude}');
+  }
+
   Future<LocationData?> getLocation() async {
     Location location = Location();
 
