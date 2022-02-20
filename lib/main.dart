@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:surf_practice_chat_flutter/data/chat/repository/firebase.dart';
+import 'package:surf_practice_chat_flutter/domain/ui/providers.dart';
 import 'package:surf_practice_chat_flutter/firebase_options.dart';
 import 'package:surf_practice_chat_flutter/screens/chat.dart';
 
@@ -17,26 +18,32 @@ void main() async {
     ),
   );
 
-  runApp(const MyApp());
+  runApp(const SetUp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class SetUp extends StatelessWidget {
+  const SetUp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final chatRepository = ChatRepositoryFirebase(FirebaseFirestore.instance);
-
     return ProviderScope(
-      child: MaterialApp(
-        theme: ThemeData(
-          colorSchemeSeed: Colors.deepPurple,
-          useMaterial3: true,
-        ),
-        home: ChatScreen(
-          chatRepository: chatRepository,
-        ),
+      child: MyApp(),
+    );
+  }
+}
+
+class MyApp extends ConsumerWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return MaterialApp(
+      scaffoldMessengerKey: ref.watch(scaffoldMessangerKeyProvider),
+      theme: ThemeData(
+        colorSchemeSeed: Colors.deepPurple,
+        useMaterial3: true,
       ),
+      home: ChatScreen(),
     );
   }
 }
