@@ -3,6 +3,7 @@ import 'package:riverpod/riverpod.dart';
 import 'package:surf_practice_chat_flutter/data/chat/chat.dart';
 import 'package:surf_practice_chat_flutter/data/chat/repository/firebase.dart';
 import 'package:surf_practice_chat_flutter/domain/ui/providers.dart';
+import 'package:surf_practice_chat_flutter/pages/page_domain/providers.dart';
 import '../user/providers.dart';
 import 'chat_manager.dart';
 import 'chat_state_holder.dart';
@@ -13,6 +14,7 @@ final chatManagerProvider = Provider(
     ref.watch(userStateHolderProvider.notifier),
     ref.watch(chatStateHolderProvider.notifier),
     ref.watch(UIExceptionManagerProvider),
+    ref.watch(chatPageStateHolderProvier.notifier),
   ),
 );
 

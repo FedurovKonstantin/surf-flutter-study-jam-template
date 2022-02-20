@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:surf_practice_chat_flutter/screens/views/message_input.dart';
-import 'package:surf_practice_chat_flutter/screens/views/name_app_bar.dart';
+import 'package:surf_practice_chat_flutter/pages/views/message_input.dart';
+import 'package:surf_practice_chat_flutter/pages/views/name_app_bar.dart';
 
 import 'views/messages.dart';
 

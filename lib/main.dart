@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:surf_practice_chat_flutter/domain/ui/providers.dart';
 import 'package:surf_practice_chat_flutter/firebase_options.dart';
-import 'package:surf_practice_chat_flutter/screens/chat.dart';
+import 'package:surf_practice_chat_flutter/pages/chat.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
