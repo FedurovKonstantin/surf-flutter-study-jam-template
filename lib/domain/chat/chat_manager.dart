@@ -41,6 +41,8 @@ class ChatManager {
       _uiExceptionManager.showSnackbar(Strings.invalidNameExceptionMessage);
     } on InvalidMessageException catch (_) {
       _uiExceptionManager.showSnackbar(Strings.invalidNameExceptionMessage);
+    } on Exception catch (e) {
+      _uiExceptionManager.showSnackbar(e.toString());
     }
   }
 }
