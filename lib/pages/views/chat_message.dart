@@ -27,6 +27,7 @@ class ChatMessage extends StatelessWidget {
         ),
         Expanded(
           child: _Body(
+            isMy: isMy,
             author: author,
             message: message,
           ),
@@ -39,17 +40,19 @@ class ChatMessage extends StatelessWidget {
 class _Body extends StatelessWidget {
   const _Body({
     Key? key,
+    required this.isMy,
     required this.author,
     required this.message,
   }) : super(key: key);
 
   final String author;
   final String message;
+  final bool isMy;
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: isMy ? CrossAxisAlignment.end : CrossAxisAlignment.start,
       children: [
         Text(
           author,

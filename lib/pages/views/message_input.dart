@@ -74,7 +74,9 @@ class _SendButton extends StatelessWidget {
       child: chatPageState.isProgress
           ? const CircularProgressIndicator()
           : IconButton(
-              onPressed: () => chatManager.sendMessage(messageController.text),
+              onPressed: () {
+                chatManager.sendMessage(messageController.text);
+              },
               icon: const Icon(
                 Icons.send,
               ),

@@ -45,7 +45,6 @@ class ChatManager {
 
       final messages = await _chatRepository.sendMessage(nickname, message);
       _chatState.updateMessages(messages);
-      _chatPageState.done();
     } on InvalidNameException catch (_) {
       _uiExceptionManager.showSnackbar(Strings.invalidNameExceptionMessage);
     } on InvalidMessageException catch (_) {
@@ -53,5 +52,6 @@ class ChatManager {
     } on Exception catch (e) {
       _uiExceptionManager.showSnackbar(e.toString());
     }
+    _chatPageState.done();
   }
 }
