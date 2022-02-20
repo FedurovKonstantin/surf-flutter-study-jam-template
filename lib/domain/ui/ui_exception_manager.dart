@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../main.dart';
-
 class UIExceptionManager {
   final GlobalKey<ScaffoldMessengerState> _messengerKey;
 

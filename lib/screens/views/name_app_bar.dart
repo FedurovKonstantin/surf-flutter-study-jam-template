@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:surf_practice_chat_flutter/domain/chat/providers.dart';
 
 import '../../../utils/Strings.dart';
 import '../../domain/user/providers.dart';
-import '../../domain/user/user_manager.dart';
 
 class NameAppBar extends ConsumerWidget implements PreferredSizeWidget {
   const NameAppBar({Key? key}) : super(key: key);

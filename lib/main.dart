@@ -1,8 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:surf_practice_chat_flutter/data/chat/repository/firebase.dart';
 import 'package:surf_practice_chat_flutter/domain/ui/providers.dart';
 import 'package:surf_practice_chat_flutter/firebase_options.dart';
 import 'package:surf_practice_chat_flutter/screens/chat.dart';
@@ -26,7 +24,7 @@ class SetUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(
+    return const ProviderScope(
       child: MyApp(),
     );
   }
@@ -43,7 +41,7 @@ class MyApp extends ConsumerWidget {
         colorSchemeSeed: Colors.deepPurple,
         useMaterial3: true,
       ),
-      home: ChatScreen(),
+      home: const ChatScreen(),
     );
   }
 }

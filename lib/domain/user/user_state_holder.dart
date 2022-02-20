@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:riverpod/riverpod.dart';
 
 import '../../data/chat/models/user.dart';
