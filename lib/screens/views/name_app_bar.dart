@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:surf_practice_chat_flutter/domain/chat/providers.dart';
 
 import '../../../utils/Strings.dart';
 import '../../domain/user/providers.dart';
@@ -16,16 +17,18 @@ class NameAppBar extends HookConsumerWidget implements PreferredSizeWidget {
     nameTextController = useTextEditingController();
 
     final userManager = ref.watch(userManagerProvider);
+    final chatManager = ref.watch(chatManagerProvider);
 
     return AppBar(
       title: Row(
         children: [
-          const Expanded(
+          Expanded(
             child: TextField(
-              style: TextStyle(
+              controller: nameTextController,
+              style: const TextStyle(
                 color: Colors.white,
               ),
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: Strings.nameHint,
                 hintStyle: TextStyle(
                   color: Colors.white38,
@@ -36,6 +39,7 @@ class NameAppBar extends HookConsumerWidget implements PreferredSizeWidget {
           IconButton(
             onPressed: () {
               userManager.setNickname(nameTextController.text);
+              chatManager.updateMessages();
             },
             icon: const Icon(
               Icons.refresh,

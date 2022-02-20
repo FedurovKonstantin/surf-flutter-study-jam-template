@@ -21,10 +21,18 @@ class ChatManager {
     } catch (e) {}
   }
 
+  Future<void> updateMessages() async {
+    try {
+      final messages = await _chatRepository.messages;
+      _chatState.updateMessages(messages);
+    } catch (e) {}
+  }
+
   Future<void> sendMessage(String message) async {
     try {
       final nickname = _userState.nickname;
-      final messages = await _chatRepository.sendMessage(nickname, message);
+      await _chatRepository.sendMessage(nickname, message);
+      final messages = await _chatRepository.messages;
       _chatState.updateMessages(messages);
     } on Exception catch (e) {}
   }
