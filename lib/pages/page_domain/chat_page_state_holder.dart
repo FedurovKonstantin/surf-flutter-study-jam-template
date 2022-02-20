@@ -4,26 +4,21 @@ import 'package:surf_practice_chat_flutter/data/chat/chat.dart';
 import 'chat_page_state.dart';
 
 class ChatPageStateHolder extends StateNotifier<ChatPageState> {
-  final List<ChatMessageDto> _chatState;
-
-  ChatPageStateHolder(
-    this._chatState, [
+  ChatPageStateHolder([
     ChatPageState? state,
-  ]) : super(state ?? ChatPageStateInProgress());
+  ]) : super(state ?? ChatPageState());
 
-  bool get _chatMessagesIsNotEmpty => _chatState.isNotEmpty;
+  void load() => state = state.copyWith(
+        isFailured: false,
+        isProgress: true,
+      );
 
-  void load() {
-    if (_chatMessagesIsNotEmpty) {
-      state = ChatPageStateInProgress();
-    }
-  }
+  void failure() => state = state.copyWith(
+        isFailured: true,
+        isProgress: false,
+      );
 
-  void failure() {
-    if (_chatMessagesIsNotEmpty) {
-      state = ChatPageStateFailured();
-    }
-  }
-
-  void done() => state = ChatPageStateWithData(_chatState);
+  void done() => state = state.copyWith(
+        isProgress: false,
+      );
 }

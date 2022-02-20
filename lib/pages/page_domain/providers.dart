@@ -6,6 +6,6 @@ import 'package:surf_practice_chat_flutter/pages/page_domain/chat_page_state_hol
 final chatPageStateHolderProvier =
     StateNotifierProvider<ChatPageStateHolder, ChatPageState>(
   (ref) => ChatPageStateHolder(
-    ref.watch(chatStateHolderProvider),
-  ),
+      // ref.watch(chatStateHolderProvider),
+      ),
 );

@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'package:surf_practice_chat_flutter/data/chat/chat.dart';
 
-class ChatPageState {}
+part 'chat_page_state.freezed.dart';
 
-// abstract class ChatPageState {}
-
-class ChatPageStateFailured extends ChatPageState {
-  ChatPageStateFailured();
+@freezed
+class ChatPageState with _$ChatPageState {
+  factory ChatPageState({
+    @Default(false) bool isProgress,
+    @Default(false) bool isFailured,
+  }) = _ChatPageState;
 }
-
-class ChatPageStateWithData extends ChatPageState {
-  final List<ChatMessageDto> messages;
-
-  ChatPageStateWithData(this.messages);
-}
-
-class ChatPageStateInProgress extends ChatPageState {}
