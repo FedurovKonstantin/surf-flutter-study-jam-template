@@ -8,5 +8,5 @@ class UserManager {
 
   UserManager(this._userState);
 
-  void setNickname(String nickName) => _userState.updateUser(nickName);
+  void updateNickname(String nickName) => _userState.updateNickname(nickName);
 }

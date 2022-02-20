@@ -7,15 +7,11 @@ import '../../../utils/Strings.dart';
 import '../../domain/user/providers.dart';
 import '../../domain/user/user_manager.dart';
 
-class NameAppBar extends HookConsumerWidget implements PreferredSizeWidget {
+class NameAppBar extends ConsumerWidget implements PreferredSizeWidget {
   const NameAppBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final TextEditingController nameTextController;
-
-    nameTextController = useTextEditingController();
-
     final userManager = ref.watch(userManagerProvider);
     final chatManager = ref.watch(chatManagerProvider);
 
@@ -24,7 +20,7 @@ class NameAppBar extends HookConsumerWidget implements PreferredSizeWidget {
         children: [
           Expanded(
             child: TextField(
-              controller: nameTextController,
+              onChanged: userManager.updateNickname,
               style: const TextStyle(
                 color: Colors.white,
               ),
@@ -37,10 +33,7 @@ class NameAppBar extends HookConsumerWidget implements PreferredSizeWidget {
             ),
           ),
           IconButton(
-            onPressed: () {
-              userManager.setNickname(nameTextController.text);
-              chatManager.updateMessages();
-            },
+            onPressed: chatManager.updateMessages,
             icon: const Icon(
               Icons.refresh,
             ),

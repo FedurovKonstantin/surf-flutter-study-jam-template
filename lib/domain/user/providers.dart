@@ -5,9 +5,7 @@ import '../../data/chat/models/user.dart';
 import 'user_manager.dart';
 
 final userStateHolderProvider = StateNotifierProvider<UserStateHolder, ChatUserDto?>(
-  (ref) => UserStateHolder(
-    ChatUserLocalDto(name: 'qew'),
-  ),
+  (ref) => UserStateHolder(),
 );
 final userManagerProvider = Provider(
   (ref) => UserManager(
